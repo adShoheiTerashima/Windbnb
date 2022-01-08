@@ -10,7 +10,7 @@ type Props = {
 const Layout = ({ children }: Props) => (
   <div className="min-h-screen">
     <Header />
-    {children}
+    <main className="font-Montserrat">{children}</main>
     <Footer />
   </div>
 )
