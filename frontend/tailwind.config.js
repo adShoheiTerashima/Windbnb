@@ -12,7 +12,12 @@ module.exports = {
       spacing: {
         7.5: '1.875rem',
         '16px': '16px',
+        '29px': '29px',
         '32px': '32px',
+        26: '6.5rem',
+      },
+      fontSize: {
+        h1: '1.75rem',
       },
       colors: {
         black: '#333',
@@ -26,6 +31,9 @@ module.exports = {
       },
       borderRadius: {
         search: '1.14rem',
+      },
+      boxShadow: {
+        search: '0 1px 6px rgba(0,0,0,0.1)',
       },
     },
   },

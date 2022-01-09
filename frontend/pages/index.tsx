@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Page from '@components/Page'
 import Layout from '@components/Layout'
+import SearchResult from '@components/SearchResult'
 
 const Home: NextPage = () => {
   const meta = {
@@ -10,7 +11,9 @@ const Home: NextPage = () => {
   }
   return (
     <Page meta={meta}>
-      <Layout>test</Layout>
+      <Layout>
+        <SearchResult />
+      </Layout>
     </Page>
   )
 }
