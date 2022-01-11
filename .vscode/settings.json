@@ -1,4 +1,8 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode", // フォーマッターをPrettierにする
-  "editor.formatOnSave": true // ファイル保存時にフォーマットを実行
+  "editor.formatOnSave": true, // ファイル保存時にフォーマットを実行
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  }
 }
