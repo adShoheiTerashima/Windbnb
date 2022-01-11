@@ -15,6 +15,8 @@ module.exports = {
         '29px': '29px',
         '32px': '32px',
         26: '6.5rem',
+        77: '19.25rem',
+        113: '28.25rem',
       },
       fontSize: {
         h1: '1.75rem',
@@ -31,9 +33,13 @@ module.exports = {
       },
       borderRadius: {
         search: '1.14rem',
+        listImage: '1.71rem',
       },
       boxShadow: {
         search: '0 1px 6px rgba(0,0,0,0.1)',
+      },
+      gridTemplateColumns: {
+        propertyList: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
       },
     },
   },

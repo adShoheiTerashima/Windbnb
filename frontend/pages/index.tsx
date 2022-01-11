@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Page from '@components/Page'
 import Layout from '@components/Layout'
-import SearchResult from '@components/SearchResult'
+import PropertyList from '@components/propertyList'
 
 const Home: NextPage = () => {
   const meta = {
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <Page meta={meta}>
       <Layout>
-        <SearchResult />
+        <PropertyList />
       </Layout>
     </Page>
   )
