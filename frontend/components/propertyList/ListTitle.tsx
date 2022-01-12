@@ -2,7 +2,7 @@ type Props = {
   country: string
 }
 
-const ResultHeader = ({ country }: Props) => {
+const ListTitle = ({ country }: Props) => {
   const title = country ? `Stays in ${country}` : 'Stays in various countries'
   return (
     <div className="flex justify-between items-center py-29px">
@@ -12,4 +12,4 @@ const ResultHeader = ({ country }: Props) => {
   )
 }
 
-export default ResultHeader
+export default ListTitle
