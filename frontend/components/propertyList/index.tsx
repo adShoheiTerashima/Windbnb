@@ -34,7 +34,7 @@ const PropertyList = () => {
   return (
     <section>
       <ListTitle country="dummy" />
-      <article className="grid gap-4 grid-cols-propertyList w-full">{article}</article>
+      <article className="grid gap-y-0 gap-x-6 grid-cols-propertyList w-full">{article}</article>
     </section>
   )
 }

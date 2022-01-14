@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import Page from '@components/Page'
-import Layout from '@components/Layout'
+import Page from '@components/common/Page'
+import Layout from '@components/common/Layout'
 import PropertyList from '@components/propertyList'
 
 const Home: NextPage = () => {
