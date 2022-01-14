@@ -10,16 +10,14 @@ module.exports = {
     },
     extend: {
       spacing: {
+        4.5: '1.125rem',
         7.5: '1.875rem',
-        '7px': '7px',
-        '10px': '10px',
-        '15px': '15px',
-        '16px': '16px',
+        12.5: '3.125rem',
         '29px': '29px',
         '32px': '32px',
         26: '6.5rem',
-        77: '19.25rem',
-        113: '28.25rem',
+        67.5: '16.875rem',
+        98: '24.5rem',
       },
       fontSize: {
         h1: '1.75rem',
@@ -30,14 +28,13 @@ module.exports = {
         gray: {
           1: '#828282',
           2: '#F2F2F2',
+          3: '#4F4F4F',
         },
         red: {
           1: '#EB5757',
         },
       },
       borderRadius: {
-        search: '1.14rem',
-        listImage: '1.71rem',
         '12px': '12px',
       },
       boxShadow: {

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Header from './Header'
-import Footer from './Footer'
+import Header from '@components/common/Header'
+import Footer from '@components/common/Footer'
 
 type Props = {
   children: React.ReactNode
@@ -10,7 +10,7 @@ type Props = {
 const Layout = ({ children }: Props) => (
   <div className="min-h-screen">
     <Header />
-    <main className="px-26 font-Montserrat">{children}</main>
+    <main className="px-24 font-Montserrat">{children}</main>
     <Footer />
   </div>
 )
