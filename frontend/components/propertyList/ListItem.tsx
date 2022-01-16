@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import Badge from '@components/propertyList/Badge'
+import StartIcon from '@components/icons/Star'
 
 type Props = {
   imageUrl?: string
@@ -22,12 +23,15 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
   return (
     <div className={cn(className, ['w-98', 'flex', 'flex-col', 'mb-12.5'])}>
       <img className="mb-4 w-full h-67.5 object-cover rounded-3xl" src={imageUrl} />
-      <div className="flex justify-between">
+      <div className="flex justify-between h-7.5">
         <div className="flex items-center">
           {superhost}
           <div className="text-gray-1 text-sm">{type}</div>
         </div>
-        <div>☆ {rating}</div>
+        <div className="flex justify-center items-center">
+          <StartIcon width="14px" height="14px" className="fill-red mr-1" />
+          <p className="text-sm text-gray-3">{rating}</p>
+        </div>
       </div>
       <p>{title}</p>
     </div>
