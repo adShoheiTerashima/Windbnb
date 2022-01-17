@@ -42,7 +42,7 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
           <p className="text-sm text-gray-3">{rating}</p>
         </div>
       </div>
-      <p className="font-semibold">{title}</p>
+      <p className="font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{title}</p>
     </div>
   )
 }
