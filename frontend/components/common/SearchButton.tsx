@@ -1,8 +1,12 @@
 import SearchIcon from '@components/icons/SearchIcon'
+import { MouseEventHandler } from 'react'
 
-const SearchButton = () => {
+type Props = {
+  click: MouseEventHandler<HTMLButtonElement>
+}
+const SearchButton = ({ click }: Props) => {
   return (
-    <div className="flex font-Mulish cursor-pointer shadow-search rounded-2xl">
+    <button className="flex font-Mulish shadow-search rounded-2xl cursor-pointer" onClick={click}>
       <p className="p-4.5 border border-gray-2 rounded-l-2xl text-sm hover:border-black">
         dummy word
       </p>
@@ -12,7 +16,7 @@ const SearchButton = () => {
       <div className="p-4.5 border border-l-0 border-gray-2 rounded-r-2xl hover:border-l hover:-ml-px hover:border-black">
         <SearchIcon width="18px" height="18px" className="fill-red" />
       </div>
-    </div>
+    </button>
   )
 }
 export default SearchButton

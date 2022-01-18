@@ -3356,6 +3356,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tailwindui/react@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@tailwindui/react@npm:0.1.1"
+  peerDependencies:
+    react: ">=16"
+  checksum: b9e01333fc6510e707951fc7d0b33d5bb131b27b1825cc099a3feca6c19d566fd24c7d8a0e4f4bc964caee62e7a96cf6e5073479bd00b73dcb4251ec481099f6
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -12470,6 +12479,7 @@ __metadata:
     "@storybook/addon-links": ^6.3.12
     "@storybook/addon-postcss": ^2.0.0
     "@storybook/react": ^6.3.12
+    "@tailwindui/react": ^0.1.1
     "@types/react": 17.0.29
     autoprefixer: ^9.8.8
     babel-loader: ^8.2.2
