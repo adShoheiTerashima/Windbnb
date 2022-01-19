@@ -1,9 +1,12 @@
-import { MouseEventHandler } from 'react'
+import { useContext } from 'react'
 
-type Props = {
-  click: MouseEventHandler<HTMLDivElement>
-}
-const Overlay = ({ click }: Props) => {
+import { NavMenuContext } from '@lib/hooks/useNavMenu'
+
+const Overlay = () => {
+  const ctx = useContext(NavMenuContext)
+  const click = () => {
+    ctx.setIsOpen(!ctx.isOpen)
+  }
   return (
     <div
       className="w-full h-full absolute top-0 bg-gray-3 opacity-40 cursor-pointer"
