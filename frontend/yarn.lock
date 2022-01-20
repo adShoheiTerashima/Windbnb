@@ -12189,12 +12189,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.17.4":
-  version: 7.22.5
-  resolution: "react-hook-form@npm:7.22.5"
+"react-hook-form@npm:^7.24.1":
+  version: 7.24.1
+  resolution: "react-hook-form@npm:7.24.1"
   peerDependencies:
     react: ^16.8.0 || ^17
-  checksum: 73c76e132f96f01cf9bd447817dda393c57e04ab65005946cefd96436f5b49bc5fa2b3e24d2d1fa737c7334f971e28aef4f617cf25dbf89d0d019d0cb0b0e41f
+  checksum: 2c2dce2e503d2a2e680af553b3df2f7df3fa95e4a5837fbe2c84e9cb3eebaf67011ee83f939884671b6d3e14e160ce2fea1b20b78c7e480d49f2ed1514b4365a
   languageName: node
   linkType: hard
 
@@ -12492,7 +12492,7 @@ __metadata:
     prettier: ^2.5.1
     react: latest
     react-dom: latest
-    react-hook-form: ^7.17.4
+    react-hook-form: ^7.24.1
     react-loading-skeleton: ^2.2.0
     tailwindcss: "npm:@tailwindcss/postcss7-compat@^2.2.17"
     typescript: 4.4.4
