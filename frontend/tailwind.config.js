@@ -3,7 +3,11 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    fill: (theme) => ({ red: theme('colors.red.1'), white: theme('colors.white') }),
+    fill: (theme) => ({
+      red: theme('colors.red.1'),
+      white: theme('colors.white'),
+      gray: theme('colors.gray'),
+    }),
     fontFamily: {
       Montserrat: ['Montserrat'],
       Mulish: ['Mulish'],
@@ -13,6 +17,7 @@ module.exports = {
         4.5: '1.125rem',
         7.5: '1.875rem',
         12.5: '3.125rem',
+        13: '3.25rem',
         67.5: '16.875rem',
         98: '24.5rem',
         115: '28.75rem',
