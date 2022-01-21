@@ -7,11 +7,10 @@ type InputData = {
 type Props = {
   id?: string
   label?: string
-  className?: string
   placeholder?: string
 }
 
-const SearchInput = ({ id, label, className, placeholder }: Props) => {
+const SearchInput = ({ id, label, placeholder }: Props) => {
   const { register } = useForm<InputData>()
   return (
     <div className="flex flex-col">

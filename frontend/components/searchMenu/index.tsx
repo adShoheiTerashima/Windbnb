@@ -40,7 +40,7 @@ const SearchForm = () => {
   }
 
   return (
-    <div className="w-full h-115 absolute top-0 bg-white">
+    <div className="w-full h-115 absolute top-0 p-24 pb-0 bg-white">
       <div className="grid grid-cols-3 font-Mulish border border-gray-2 shadow-search rounded-2xl">
         <div className="flex">
           <div
@@ -73,7 +73,7 @@ const SearchForm = () => {
           <SearchButton />
         </div>
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 mt-11">
         <div>{isFocusLocation ? <SuggestList /> : ''}</div>
         <div>{isFocusGuests ? <GuestCount /> : ''}</div>
       </div>

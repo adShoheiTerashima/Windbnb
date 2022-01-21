@@ -1,5 +1,5 @@
 import React from 'react'
-import { Transition } from '@tailwindui/react'
+import { Transition } from '@headlessui/react'
 
 import { useNavMenu, NavMenuContext } from '@lib/hooks/useNavMenu'
 import { useFocusSearchForm, FocusSearchFormContext } from '@lib/hooks/useSearch'
@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => {
   const navMenuCtx = useNavMenu()
   const focusSearchFormCtx = useFocusSearchForm()
   return (
-    <div className="min-h-screen text-black">
+    <div className="min-h-screen text-black relative">
       <NavMenuContext.Provider value={navMenuCtx}>
         <FocusSearchFormContext.Provider value={focusSearchFormCtx}>
           <Header />
