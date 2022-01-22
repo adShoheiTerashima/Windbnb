@@ -1,17 +1,23 @@
 import { useState } from 'react'
 import { CountButton, btnType } from '@components/searchMenu/CountButton'
 
-const GuestCount = () => {
-  const [adultsCount, setAdultsCount] = useState(0)
-  const [childrenCount, setChildrenCount] = useState(0)
+type Props = {
+  countAdults: number
+  countChildren: number
+  inputAdults: (num: number) => void
+  inputChildren: (num: number) => void
+}
+
+const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: Props) => {
   const clickAdultsCount = (count: number) => {
-    const countResult = adultsCount + count > 0 ? adultsCount + count : 0
-    setAdultsCount(countResult)
+    const countResult = countAdults + count > 0 ? countAdults + count : 0
+    inputAdults(countResult)
   }
   const clickChildrenCount = (count: number) => {
-    const countResult = childrenCount + count > 0 ? childrenCount + count : 0
-    setChildrenCount(countResult)
+    const countResult = countChildren + count > 0 ? countChildren + count : 0
+    inputChildren(countResult)
   }
+
   return (
     <ul>
       <li className="text-sm font-Mulish">
@@ -25,7 +31,7 @@ const GuestCount = () => {
               clickAdultsCount(-1)
             }}
           />
-          <p className="mr-4 text-sm">{adultsCount}</p>
+          <p className="mr-4 text-sm">{countAdults}</p>
           <CountButton
             type={btnType.PLUS}
             click={() => {
@@ -45,7 +51,7 @@ const GuestCount = () => {
               clickChildrenCount(-1)
             }}
           />
-          <p className="mr-4 text-sm">{childrenCount}</p>
+          <p className="mr-4 text-sm">{countChildren}</p>
           <CountButton
             type={btnType.PLUS}
             click={() => {
