@@ -11,7 +11,21 @@ const SearchForm = () => {
   const locationRef = useRef<HTMLDivElement>(null)
   const guestsRef = useRef<HTMLDivElement>(null)
   const focusSearchFormCtx = useContext(FocusSearchFormContext)
+  const [guests, setGuests] = useState(0)
 
+  // 検索テキストフォーム周り
+  const [inputText, setInputText] = useState('')
+  const changeText = (event: { target: HTMLInputElement }) => setInputText(event.target.value)
+
+  // guestの人数変更
+  const [countAdults, setCountAdults] = useState(0)
+  const [countChildren, setCountChildren] = useState(0)
+  const inputAdults = (num: number) => setCountAdults(num)
+  const inputChildren = (num: number) => setCountChildren(num)
+  useEffect(() => setGuests(countAdults + countChildren), [countAdults, countChildren])
+
+  // これは値オブジェクトとして切り出したい…
+  const isZeroGuest = guests === 0
   const isFocusLocation = focusSearchFormCtx.focusFormType === formType.LOCATION
   const isFocusGuests = focusSearchFormCtx.focusFormType === formType.GUESTS
 
@@ -25,18 +39,14 @@ const SearchForm = () => {
     }
   })
 
-  const clickLocation = () => {
-    focusSearchFormCtx.setFocusType(formType.LOCATION)
-  }
-  const clickGuests = () => {
-    focusSearchFormCtx.setFocusType(formType.GUESTS)
-  }
+  const clickLocation = () => focusSearchFormCtx.setFocusType(formType.LOCATION)
+  const clickGuests = () => focusSearchFormCtx.setFocusType(formType.GUESTS)
+  const clickSuggest = (propertyId: number) => {
+    // ここで何らかの形でpropertyIdからcity, countryを取り出す
+    console.log(`propertyId${propertyId}`)
 
-  const [dummyFlg, setDummyFlg] = useState(false)
-
-  const click = () => {
-    console.log('click!!')
-    setDummyFlg(!dummyFlg)
+    // とりあえず適当に値入れておく
+    setInputText('Helsinki, Finland')
   }
 
   return (
@@ -49,11 +59,17 @@ const SearchForm = () => {
             onClick={clickLocation}
             tabIndex={0}
           >
-            <SearchInput id="search-location" label="LOCATION" placeholder="Add location" />
+            <SearchInput
+              id="search-location"
+              label="LOCATION"
+              placeholder="Add location"
+              inputText={inputText}
+              change={changeText}
+            />
           </div>
           <div className="border-l border-gray-2" />
         </div>
-        <div className="flex" onClick={click}>
+        <div className="flex">
           <div
             className="p-2.5 w-full h-full border border-white cursor-pointer hover:border hover:border-black hover:rounded-2xl focus:border focus:border-black focus:rounded-2xl"
             ref={guestsRef}
@@ -61,10 +77,10 @@ const SearchForm = () => {
             tabIndex={0}
           >
             <p className="mb-1 text-0.5 font-extrabold">GUESTS</p>
-            {dummyFlg ? (
+            {isZeroGuest ? (
               <p className="text-sm text-gray-4">Add guests</p>
             ) : (
-              <p className="text-sm">4 guests</p>
+              <p className="text-sm">{countAdults + countChildren} guests</p>
             )}
           </div>
           <div className="border-l border-gray-2" />
@@ -74,8 +90,19 @@ const SearchForm = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 mt-11">
-        <div>{isFocusLocation ? <SuggestList /> : ''}</div>
-        <div>{isFocusGuests ? <GuestCount /> : ''}</div>
+        <div className="ml-1.5">{isFocusLocation ? <SuggestList click={clickSuggest} /> : ''}</div>
+        <div className="ml-2.5">
+          {isFocusGuests ? (
+            <GuestCount
+              countAdults={countAdults}
+              countChildren={countChildren}
+              inputAdults={inputAdults}
+              inputChildren={inputChildren}
+            />
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </div>
   )

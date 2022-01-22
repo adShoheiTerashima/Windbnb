@@ -2,15 +2,18 @@ import { useContext } from 'react'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FocusSearchFormContext, focusFormType, formType } from '@lib/hooks/useSearch'
+
 import SearchIcon from '@components/icons/SearchIcon'
 
 const SearchButton = () => {
   const navMenuCtx = useContext(NavMenuContext)
   const focusSearchFormCtx = useContext(FocusSearchFormContext)
+
   const click = (clickedType: focusFormType) => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
     focusSearchFormCtx.setFocusType(clickedType)
   }
+
   return (
     <div className="flex font-Mulish shadow-search rounded-2xl cursor-pointer">
       <button

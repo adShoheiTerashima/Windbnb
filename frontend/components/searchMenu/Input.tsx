@@ -1,17 +1,21 @@
-import { useForm } from 'react-hook-form'
-
-type InputData = {
-  searchText: string
-}
+import useDebounce from '@lib/hooks/useDebounce'
+import { useEffect, useState } from 'react'
 
 type Props = {
   id?: string
   label?: string
   placeholder?: string
+  inputText: string
+  change: (event: { target: HTMLInputElement }) => void
 }
 
-const SearchInput = ({ id, label, placeholder }: Props) => {
-  const { register } = useForm<InputData>()
+const SearchInput = ({ id, label, placeholder, inputText, change }: Props) => {
+  const debouncedInputText = useDebounce<string>(inputText, 200)
+
+  useEffect(() => {
+    console.log('api実行！')
+  }, [debouncedInputText])
+
   return (
     <div className="flex flex-col">
       {label && (
@@ -23,7 +27,8 @@ const SearchInput = ({ id, label, placeholder }: Props) => {
         id={id}
         className="outline-none w-full h-full text-sm placeholder-gray-4::placeholder"
         placeholder={placeholder}
-        {...register('searchText')}
+        value={inputText}
+        onChange={change}
       />
     </div>
   )
