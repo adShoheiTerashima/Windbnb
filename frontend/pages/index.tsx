@@ -1,4 +1,7 @@
 import type { NextPage } from 'next'
+
+import { useSearchCondition, SearchConditionContext } from '@lib/hooks/useSearchCondition'
+
 import Page from '@components/common/Page'
 import Layout from '@components/common/Layout'
 import PropertyList from '@components/propertyList'
@@ -9,11 +12,17 @@ const Home: NextPage = () => {
     description: 'Windbnbの一覧画面です。',
     noindex: true,
   }
+
+  // 実際のアプリケーションではSEOを考えてserverPropsで取得するはず
+  // 今回もその予定
+  const SearchConditionCtx = useSearchCondition()
   return (
     <Page meta={meta}>
-      <Layout>
-        <PropertyList />
-      </Layout>
+      <SearchConditionContext.Provider value={SearchConditionCtx}>
+        <Layout>
+          <PropertyList />
+        </Layout>
+      </SearchConditionContext.Provider>
     </Page>
   )
 }

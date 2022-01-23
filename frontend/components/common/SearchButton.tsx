@@ -2,17 +2,28 @@ import { useContext } from 'react'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FocusSearchFormContext, focusFormType, formType } from '@lib/hooks/useSearch'
+import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
 
 import SearchIcon from '@components/icons/SearchIcon'
 
 const SearchButton = () => {
   const navMenuCtx = useContext(NavMenuContext)
   const focusSearchFormCtx = useContext(FocusSearchFormContext)
+  const searchConditionCtx = useContext(SearchConditionContext)
 
   const click = (clickedType: focusFormType) => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
     focusSearchFormCtx.setFocusType(clickedType)
   }
+
+  const selectedLocation = `${searchConditionCtx.city}, ${searchConditionCtx.country}`
+  const guests = searchConditionCtx.adults + searchConditionCtx.children
+  const viewGuests =
+    guests > 0 ? (
+      <span className="text-sm">{guests} guests</span>
+    ) : (
+      <span className="text-sm text-gray-4">Add guets</span>
+    )
 
   return (
     <div className="flex font-Mulish shadow-search rounded-2xl cursor-pointer">
@@ -21,14 +32,14 @@ const SearchButton = () => {
         className="p-4.5 border border-gray-2 rounded-l-2xl text-sm hover:border-black"
         onClick={() => click(formType.LOCATION)}
       >
-        dummy word
+        {selectedLocation}
       </button>
       <button
         type="button"
-        className="p-4.5 border border-l-0 border-gray-2 text-sm hover:border-l hover:-ml-px hover:border-black"
+        className="p-4.5 border border-l-0 border-gray-2 font-Mulish hover:border-l hover:-ml-px hover:border-black"
         onClick={() => click(formType.GUESTS)}
       >
-        4 guest
+        {viewGuests}
       </button>
       <button
         type="button"

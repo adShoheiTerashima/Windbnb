@@ -1,5 +1,5 @@
 import useDebounce from '@lib/hooks/useDebounce'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 type Props = {
   id?: string
