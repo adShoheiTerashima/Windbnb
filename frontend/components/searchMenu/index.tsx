@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 
 import { FocusSearchFormContext, formType } from '@lib/hooks/useSearch'
+import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
 
 import SearchButton from '@components/searchMenu/Button'
 import SearchInput from '@components/searchMenu/Input'
@@ -11,15 +12,18 @@ const SearchForm = () => {
   const locationRef = useRef<HTMLDivElement>(null)
   const guestsRef = useRef<HTMLDivElement>(null)
   const focusSearchFormCtx = useContext(FocusSearchFormContext)
+  const searchConditionCtx = useContext(SearchConditionContext)
   const [guests, setGuests] = useState(0)
 
   // 検索テキストフォーム周り
-  const [inputText, setInputText] = useState('')
+  const [inputText, setInputText] = useState(
+    `${searchConditionCtx.city}, ${searchConditionCtx.country}`,
+  )
   const changeText = (event: { target: HTMLInputElement }) => setInputText(event.target.value)
 
   // guestの人数変更
-  const [countAdults, setCountAdults] = useState(0)
-  const [countChildren, setCountChildren] = useState(0)
+  const [countAdults, setCountAdults] = useState(searchConditionCtx.adults)
+  const [countChildren, setCountChildren] = useState(searchConditionCtx.children)
   const inputAdults = (num: number) => setCountAdults(num)
   const inputChildren = (num: number) => setCountChildren(num)
   useEffect(() => setGuests(countAdults + countChildren), [countAdults, countChildren])
