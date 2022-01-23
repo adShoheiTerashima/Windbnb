@@ -37,7 +37,7 @@ const SearchForm = () => {
     if (isFocusGuests && guestsRef.current) {
       guestsRef.current.focus()
     }
-  })
+  }, [])
 
   const clickLocation = () => focusSearchFormCtx.setFocusType(formType.LOCATION)
   const clickGuests = () => focusSearchFormCtx.setFocusType(formType.GUESTS)
@@ -54,7 +54,7 @@ const SearchForm = () => {
       <div className="grid grid-cols-3 font-Mulish border border-gray-2 shadow-search rounded-2xl">
         <div className="flex">
           <div
-            className="p-2.5 w-full h-full border border-white rounded-2xl  cursor-pointer hover:border-black focus:border-black"
+            className="p-2.5 w-full h-full border border-white rounded-2xl cursor-pointer hover:border-black focus-within:border-black focus:outline-none"
             ref={locationRef}
             onClick={clickLocation}
             tabIndex={0}
@@ -71,7 +71,7 @@ const SearchForm = () => {
         </div>
         <div className="flex">
           <div
-            className="p-2.5 w-full h-full border border-white cursor-pointer hover:border hover:border-black hover:rounded-2xl focus:border focus:border-black focus:rounded-2xl"
+            className="p-2.5 w-full h-full  border border-white rounded-2xl cursor-pointer  hover:border-black focus:border-black focus:outline-none"
             ref={guestsRef}
             onClick={clickGuests}
             tabIndex={0}
