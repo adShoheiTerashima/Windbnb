@@ -1,19 +1,23 @@
 import { useContext } from 'react'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
-import { FocusSearchFormContext, focusFormType, formType } from '@lib/hooks/useSearch'
+import { FORM_TYPE } from '@lib/utils/const'
+import { focusFormType } from '@lib/utils/types'
 import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
 
 import SearchIcon from '@components/icons/SearchIcon'
 
-const SearchButton = () => {
+type Props = {
+  setForcusForm: React.Dispatch<React.SetStateAction<focusFormType>>
+}
+
+const SearchButton = ({ setForcusForm }: Props) => {
   const navMenuCtx = useContext(NavMenuContext)
-  const focusSearchFormCtx = useContext(FocusSearchFormContext)
   const searchConditionCtx = useContext(SearchConditionContext)
 
   const click = (clickedType: focusFormType) => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
-    focusSearchFormCtx.setFocusType(clickedType)
+    setForcusForm(clickedType)
   }
 
   const selectedLocation = `${searchConditionCtx.city}, ${searchConditionCtx.country}`
@@ -30,21 +34,21 @@ const SearchButton = () => {
       <button
         type="button"
         className="p-4.5 border border-gray-2 rounded-l-2xl text-sm hover:border-black"
-        onClick={() => click(formType.LOCATION)}
+        onClick={() => click(FORM_TYPE.LOCATION)}
       >
         {selectedLocation}
       </button>
       <button
         type="button"
         className="p-4.5 border border-l-0 border-gray-2 font-Mulish hover:border-l hover:-ml-px hover:border-black"
-        onClick={() => click(formType.GUESTS)}
+        onClick={() => click(FORM_TYPE.GUESTS)}
       >
         {viewGuests}
       </button>
       <button
         type="button"
         className="p-4.5 border border-l-0 border-gray-2 rounded-r-2xl hover:border-l hover:-ml-px hover:border-black"
-        onClick={() => click(formType.LOCATION)}
+        onClick={() => click(FORM_TYPE.LOCATION)}
       >
         <SearchIcon width="18px" height="18px" className="fill-red" />
       </button>
