@@ -31,7 +31,7 @@ const Layout = ({ children }: Props) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Overlay />
+          <Overlay setForcusForm={setForcusForm} />
           <SearchMenu focusForm={focusForm} setForcusForm={setForcusForm} />
         </Transition>
       </NavMenuContext.Provider>

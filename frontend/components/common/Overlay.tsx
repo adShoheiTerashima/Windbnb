@@ -1,15 +1,19 @@
 import { useContext } from 'react'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
-import { FocusSearchFormContext, formType } from '@lib/hooks/useSearch'
+import { FORM_TYPE } from '@lib/utils/const'
+import { focusFormType } from '@lib/utils/types'
 
-const Overlay = () => {
+type Props = {
+  setForcusForm: React.Dispatch<React.SetStateAction<focusFormType>>
+}
+const Overlay = ({ setForcusForm }: Props) => {
   const navMenuCtx = useContext(NavMenuContext)
-  const focusSearchFormCtx = useContext(FocusSearchFormContext)
+  setForcusForm
 
   const click = () => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
-    focusSearchFormCtx.setFocusType(formType.NONE)
+    setForcusForm(FORM_TYPE.NONE)
   }
 
   return (
