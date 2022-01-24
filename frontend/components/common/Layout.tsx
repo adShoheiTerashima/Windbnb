@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Transition } from '@headlessui/react'
 
 import { useNavMenu, NavMenuContext } from '@lib/hooks/useNavMenu'
-import { useFocusSearchForm, FocusSearchFormContext } from '@lib/hooks/useSearch'
+import { FORM_TYPE } from '@lib/utils/const'
+import { focusFormType } from '@lib/utils/types'
 
 import Header from '@components/common/Header'
 import Footer from '@components/common/Footer'
@@ -15,25 +16,24 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const navMenuCtx = useNavMenu()
-  const focusSearchFormCtx = useFocusSearchForm()
+  const [focusForm, setForcusForm] = useState<focusFormType>(FORM_TYPE.LOCATION)
+
   return (
     <div className="min-h-screen text-black relative">
       <NavMenuContext.Provider value={navMenuCtx}>
-        <FocusSearchFormContext.Provider value={focusSearchFormCtx}>
-          <Header />
-          <Transition
-            show={navMenuCtx.isOpen}
-            enter="transition-opacity duration-150"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity duration-150"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Overlay />
-            <SearchMenu />
-          </Transition>
-        </FocusSearchFormContext.Provider>
+        <Header setForcusForm={setForcusForm} />
+        <Transition
+          show={navMenuCtx.isOpen}
+          enter="transition-opacity duration-150"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity duration-150"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Overlay />
+          <SearchMenu focusForm={focusForm} setForcusForm={setForcusForm} />
+        </Transition>
       </NavMenuContext.Provider>
       <main className="px-24 font-Montserrat">{children}</main>
       <Footer />

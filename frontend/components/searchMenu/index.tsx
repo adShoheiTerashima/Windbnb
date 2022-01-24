@@ -1,17 +1,22 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 
-import { FocusSearchFormContext, formType } from '@lib/hooks/useSearch'
 import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
+import { FORM_TYPE } from '@lib/utils/const'
+import { focusFormType } from '@lib/utils/types'
 
 import SearchButton from '@components/searchMenu/Button'
 import SearchInput from '@components/searchMenu/Input'
 import SuggestList from '@components/searchMenu/SuggestList'
 import GuestCount from '@components/searchMenu/GuestCount'
 
-const SearchForm = () => {
+type Props = {
+  focusForm: focusFormType
+  setForcusForm: React.Dispatch<React.SetStateAction<focusFormType>>
+}
+
+const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   const locationRef = useRef<HTMLDivElement>(null)
   const guestsRef = useRef<HTMLDivElement>(null)
-  const focusSearchFormCtx = useContext(FocusSearchFormContext)
   const searchConditionCtx = useContext(SearchConditionContext)
   const [guests, setGuests] = useState(0)
 
@@ -30,8 +35,8 @@ const SearchForm = () => {
 
   // これは値オブジェクトとして切り出したい…
   const isZeroGuest = guests === 0
-  const isFocusLocation = focusSearchFormCtx.focusFormType === formType.LOCATION
-  const isFocusGuests = focusSearchFormCtx.focusFormType === formType.GUESTS
+  const isFocusLocation = focusForm === FORM_TYPE.LOCATION
+  const isFocusGuests = focusForm === FORM_TYPE.GUESTS
 
   // ヘッダーの検索ボタンのどこを押したかによって、初期表示のfocusを変える
   useEffect(() => {
@@ -43,8 +48,8 @@ const SearchForm = () => {
     }
   }, [])
 
-  const clickLocation = () => focusSearchFormCtx.setFocusType(formType.LOCATION)
-  const clickGuests = () => focusSearchFormCtx.setFocusType(formType.GUESTS)
+  const clickLocation = () => setForcusForm(FORM_TYPE.LOCATION)
+  const clickGuests = () => setForcusForm(FORM_TYPE.GUESTS)
   const clickSuggest = (propertyId: number) => {
     // ここで何らかの形でpropertyIdからcity, countryを取り出す
     console.log(`propertyId${propertyId}`)
