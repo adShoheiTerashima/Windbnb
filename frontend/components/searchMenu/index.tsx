@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
 import { FORM_TYPE } from '@lib/utils/const'
 import { focusFormType } from '@lib/utils/types'
 
-import SearchButton from '@components/searchMenu/Button'
+import SubmitButton from '@components/searchMenu/SubmitButton'
 import SearchInput from '@components/searchMenu/Input'
 import SuggestList from '@components/searchMenu/SuggestList'
 import GuestCount from '@components/searchMenu/GuestCount'
@@ -19,10 +20,15 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   const guestsRef = useRef<HTMLDivElement>(null)
   const searchConditionCtx = useContext(SearchConditionContext)
   const [guests, setGuests] = useState(0)
+  const router = useRouter()
 
   // 検索テキストフォーム周り
+  const [inputCity, setInputCity] = useState(searchConditionCtx.city)
+  const [inputCountry, setInputCountry] = useState(searchConditionCtx.country)
   const [inputText, setInputText] = useState(
-    `${searchConditionCtx.city}, ${searchConditionCtx.country}`,
+    searchConditionCtx.country !== ''
+      ? `${searchConditionCtx.city}, ${searchConditionCtx.country}`
+      : '',
   )
   const changeText = (event: { target: HTMLInputElement }) => setInputText(event.target.value)
 
@@ -48,6 +54,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
     }
   }, [])
 
+  // clickイベント
   const clickLocation = () => setForcusForm(FORM_TYPE.LOCATION)
   const clickGuests = () => setForcusForm(FORM_TYPE.GUESTS)
   const clickSuggest = (propertyId: number) => {
@@ -56,6 +63,23 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
 
     // とりあえず適当に値入れておく
     setInputText('Helsinki, Finland')
+    setInputCity('Helsinki')
+    setInputCountry('Finland')
+  }
+
+  // Searchボタン押下
+  const clickSubmitButton = () => {
+    const query = {
+      city: inputCity,
+      country: inputCountry,
+      adults: countAdults,
+      children: countChildren,
+    }
+    // dummy url
+    router.push({
+      pathname: '/',
+      query,
+    })
   }
 
   return (
@@ -89,13 +113,13 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
             {isZeroGuest ? (
               <p className="text-sm text-gray-4">Add guests</p>
             ) : (
-              <p className="text-sm">{countAdults + countChildren} guests</p>
+              <p className="text-sm">{guests} guests</p>
             )}
           </div>
           <div className="border-l border-gray-2" />
         </div>
         <div className="flex justify-center items-center">
-          <SearchButton />
+          <SubmitButton click={clickSubmitButton} />
         </div>
       </div>
       <div className="grid grid-cols-3 mt-11">

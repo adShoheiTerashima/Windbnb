@@ -1,5 +1,6 @@
 import { createContext, useCallback, useState } from 'react'
 
+/* types */
 type searchConditionContextType = {
   city: string
   country: string
@@ -10,6 +11,11 @@ type searchConditionContextType = {
   setAdults: (adults: number) => void
   setChildren: (children: number) => void
 }
+export type defaultSearchConditionType = Pick<
+  searchConditionContextType,
+  'city' | 'country' | 'adults' | 'children'
+>
+
 const defaultSearchConditionContext: searchConditionContextType = {
   city: '',
   country: '',
@@ -24,11 +30,13 @@ const defaultSearchConditionContext: searchConditionContextType = {
 export const SearchConditionContext = createContext<searchConditionContextType>(
   defaultSearchConditionContext,
 )
-export const useSearchCondition = (): searchConditionContextType => {
-  const [city, setCityState] = useState('Helsinki')
-  const [country, setcountryState] = useState('Finland')
-  const [adults, setAdultsState] = useState(1)
-  const [children, setChildrenState] = useState(0)
+export const useSearchCondition = (
+  defaultValue: defaultSearchConditionType,
+): searchConditionContextType => {
+  const [city, setCityState] = useState(defaultValue.city)
+  const [country, setcountryState] = useState(defaultValue.country)
+  const [adults, setAdultsState] = useState(defaultValue.adults)
+  const [children, setChildrenState] = useState(defaultValue.children)
   return {
     city,
     country,
