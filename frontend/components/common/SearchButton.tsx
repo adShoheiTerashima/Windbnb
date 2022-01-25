@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FORM_TYPE } from '@lib/utils/const'
@@ -14,14 +14,24 @@ type Props = {
 const SearchButton = ({ setForcusForm }: Props) => {
   const navMenuCtx = useContext(NavMenuContext)
   const searchConditionCtx = useContext(SearchConditionContext)
+  const [guests, setGuests] = useState(searchConditionCtx.adults + searchConditionCtx.children)
 
   const click = (clickedType: focusFormType) => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
     setForcusForm(clickedType)
   }
 
-  const selectedLocation = `${searchConditionCtx.city}, ${searchConditionCtx.country}`
-  const guests = searchConditionCtx.adults + searchConditionCtx.children
+  const selectedLocation =
+    searchConditionCtx.country !== '' ? (
+      <span className="text-sm">
+        {searchConditionCtx.city}, {searchConditionCtx.country}
+      </span>
+    ) : (
+      <span className="text-sm text-gray-4">Add location</span>
+    )
+  useEffect(() => {
+    setGuests(searchConditionCtx.adults + searchConditionCtx.children)
+  }, [searchConditionCtx.adults, searchConditionCtx.children])
   const viewGuests =
     guests > 0 ? (
       <span className="text-sm">{guests} guests</span>
