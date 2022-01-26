@@ -19,7 +19,7 @@ const Layout = ({ children }: Props) => {
   const [focusForm, setForcusForm] = useState<focusFormType>(FORM_TYPE.LOCATION)
 
   return (
-    <div className="min-h-screen text-black relative">
+    <div className="relative min-h-screen text-black">
       <NavMenuContext.Provider value={navMenuCtx}>
         <Header setForcusForm={setForcusForm} />
         <Transition

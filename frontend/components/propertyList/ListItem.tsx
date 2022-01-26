@@ -31,18 +31,18 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
         'hover:opacity-75',
       ])}
     >
-      <img className="mb-4 w-full h-67.5 object-cover rounded-3xl" src={imageUrl} />
-      <div className="flex justify-between h-7.5 mb-3">
+      <img className="mb-4 h-67.5 w-full rounded-3xl object-cover" src={imageUrl} />
+      <div className="mb-3 flex h-7.5 justify-between">
         <div className="flex items-center">
           {superhost}
-          <div className="text-gray-1 text-sm">{type}</div>
+          <div className="text-sm text-gray-1">{type}</div>
         </div>
-        <div className="flex justify-center items-center">
-          <StartIcon width="14px" height="14px" className="fill-red mr-1" />
+        <div className="flex items-center justify-center">
+          <StartIcon width="14px" height="14px" className="mr-1 fill-red" />
           <p className="text-sm text-gray-3">{rating}</p>
         </div>
       </div>
-      <p className="font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">{title}</p>
+      <p className="overflow-hidden overflow-ellipsis whitespace-nowrap font-semibold">{title}</p>
     </div>
   )
 }

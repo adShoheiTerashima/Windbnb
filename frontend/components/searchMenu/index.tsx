@@ -83,11 +83,11 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   }
 
   return (
-    <div className="w-full h-115 absolute top-0 p-24 pb-0 bg-white">
-      <div className="grid grid-cols-3 font-Mulish border border-gray-2 shadow-search rounded-2xl">
+    <div className="absolute top-0 h-115 w-full bg-white p-24 pb-0">
+      <div className="grid grid-cols-3 rounded-2xl border border-gray-2 font-Mulish shadow-search">
         <div className="flex">
           <div
-            className="p-2.5 w-full h-full border border-white rounded-2xl cursor-pointer hover:border-black focus-within:border-black focus:outline-none"
+            className="focus:outline-none h-full w-full cursor-pointer rounded-2xl border border-white p-2.5 focus-within:border-black hover:border-black"
             ref={locationRef}
             onClick={clickLocation}
             tabIndex={0}
@@ -104,7 +104,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
         </div>
         <div className="flex">
           <div
-            className="p-2.5 w-full h-full  border border-white rounded-2xl cursor-pointer  hover:border-black focus:border-black focus:outline-none"
+            className="focus:outline-none h-full w-full  cursor-pointer rounded-2xl border border-white  p-2.5 hover:border-black focus:border-black"
             ref={guestsRef}
             onClick={clickGuests}
             tabIndex={0}
@@ -118,11 +118,11 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           </div>
           <div className="border-l border-gray-2" />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <SubmitButton click={clickSubmitButton} />
         </div>
       </div>
-      <div className="grid grid-cols-3 mt-11">
+      <div className="mt-11 grid grid-cols-3">
         <div className="ml-1.5">{isFocusLocation ? <SuggestList click={clickSuggest} /> : ''}</div>
         <div className="ml-2.5">
           {isFocusGuests ? (

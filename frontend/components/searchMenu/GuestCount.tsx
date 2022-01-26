@@ -20,10 +20,10 @@ const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: 
 
   return (
     <ul>
-      <li className="text-sm font-Mulish">
+      <li className="font-Mulish text-sm">
         <p className="font-bold">Adults</p>
-        <p className="text-gray-4 mt-1">Ages 12 or above</p>
-        <div className="flex justify-start items-center mt-3">
+        <p className="mt-1 text-gray-4">Ages 12 or above</p>
+        <div className="mt-3 flex items-center justify-start">
           <CountButton
             type={btnType.MINUS}
             className="mr-4"
@@ -40,10 +40,10 @@ const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: 
           />
         </div>
       </li>
-      <li className="text-sm font-Mulish mt-11">
+      <li className="mt-11 font-Mulish text-sm">
         <p className="font-bold">Children</p>
-        <p className="text-gray-4 mt-1">Ages 2-12</p>
-        <div className="flex justify-start items-center mt-3">
+        <p className="mt-1 text-gray-4">Ages 2-12</p>
+        <div className="mt-3 flex items-center justify-start">
           <CountButton
             type={btnType.MINUS}
             className="mr-4"
