@@ -40,24 +40,24 @@ const SearchButton = ({ setForcusForm }: Props) => {
     )
 
   return (
-    <div className="flex font-Mulish shadow-search rounded-2xl cursor-pointer">
+    <div className="flex cursor-pointer rounded-2xl font-Mulish shadow-search">
       <button
         type="button"
-        className="p-4.5 border border-gray-2 rounded-l-2xl text-sm hover:border-black"
+        className="rounded-l-2xl border border-gray-2 p-4.5 text-sm hover:border-black"
         onClick={() => click(FORM_TYPE.LOCATION)}
       >
         {selectedLocation}
       </button>
       <button
         type="button"
-        className="p-4.5 border border-l-0 border-gray-2 font-Mulish hover:border-l hover:-ml-px hover:border-black"
+        className="border border-l-0 border-gray-2 p-4.5 font-Mulish hover:-ml-px hover:border-l hover:border-black"
         onClick={() => click(FORM_TYPE.GUESTS)}
       >
         {viewGuests}
       </button>
       <button
         type="button"
-        className="p-4.5 border border-l-0 border-gray-2 rounded-r-2xl hover:border-l hover:-ml-px hover:border-black"
+        className="rounded-r-2xl border border-l-0 border-gray-2 p-4.5 hover:-ml-px hover:border-l hover:border-black"
         onClick={() => click(FORM_TYPE.LOCATION)}
       >
         <SearchIcon width="18px" height="18px" className="fill-red" />

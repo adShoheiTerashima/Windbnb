@@ -25,7 +25,7 @@ const SearchInput = ({ id, label, placeholder, inputText, change }: Props) => {
       )}
       <input
         id={id}
-        className="outline-none w-full h-full text-sm placeholder-gray-4::placeholder"
+        className="outline-none placeholder-gray-4::placeholder h-full w-full text-sm"
         placeholder={placeholder}
         value={inputText}
         onChange={change}
