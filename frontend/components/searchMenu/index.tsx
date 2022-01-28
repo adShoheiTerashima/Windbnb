@@ -84,7 +84,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
 
   return (
     <div className="absolute top-0 h-115 w-full bg-white p-24 pb-0">
-      <div className="grid grid-cols-3 rounded-2xl border border-gray-2 font-Mulish shadow-search">
+      <div className="grid grid-cols-3 rounded-2xl border border-gray-F2F2F2 font-Mulish shadow-search">
         <div className="flex">
           <div
             className="focus:outline-none h-full w-full cursor-pointer rounded-2xl border border-white p-2.5 focus-within:border-black hover:border-black"
@@ -100,7 +100,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
               change={changeText}
             />
           </div>
-          <div className="border-l border-gray-2" />
+          <div className="border-l border-gray-F2F2F2" />
         </div>
         <div className="flex">
           <div
@@ -111,12 +111,12 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           >
             <p className="mb-1 text-0.5 font-extrabold">GUESTS</p>
             {isZeroGuest ? (
-              <p className="text-sm text-gray-4">Add guests</p>
+              <p className="text-sm text-gray-BDBDBD">Add guests</p>
             ) : (
               <p className="text-sm">{guests} guests</p>
             )}
           </div>
-          <div className="border-l border-gray-2" />
+          <div className="border-l border-gray-F2F2F2" />
         </div>
         <div className="flex items-center justify-center">
           <SubmitButton click={clickSubmitButton} />

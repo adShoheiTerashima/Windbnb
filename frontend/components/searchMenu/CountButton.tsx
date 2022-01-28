@@ -16,7 +16,7 @@ export const CountButton = ({ type, className, click }: Props) => (
       'w-6',
       'h-6',
       'border',
-      'border-gray-1',
+      'border-gray-828282',
       'rounded',
       'flex',
       'justify-center',

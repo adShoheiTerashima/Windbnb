@@ -35,11 +35,11 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
       <div className="mb-3 flex h-7.5 justify-between">
         <div className="flex items-center">
           {superhost}
-          <div className="text-sm text-gray-1">{type}</div>
+          <div className="text-sm text-gray-828282">{type}</div>
         </div>
         <div className="flex items-center justify-center">
-          <StartIcon width="14px" height="14px" className="mr-1 fill-red" />
-          <p className="text-sm text-gray-3">{rating}</p>
+          <StartIcon width="14px" height="14px" className="fill-red-EB5757 mr-1" />
+          <p className="text-sm text-gray-4F4F4F">{rating}</p>
         </div>
       </div>
       <p className="overflow-hidden overflow-ellipsis whitespace-nowrap font-semibold">{title}</p>
