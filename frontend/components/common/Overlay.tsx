@@ -18,7 +18,7 @@ const Overlay = ({ setForcusForm }: Props) => {
 
   return (
     <div
-      className="absolute top-0 h-full w-full cursor-pointer bg-gray-3 opacity-40"
+      className="absolute top-0 h-full w-full cursor-pointer bg-gray-4F4F4F opacity-40"
       onClick={click}
     />
   )

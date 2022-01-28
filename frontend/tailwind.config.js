@@ -4,7 +4,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fill: (theme) => ({
-      red: theme('colors.red.1'),
+      red: theme('colors.red'),
       white: theme('colors.white'),
       gray: theme('colors.gray'),
     }),
@@ -28,13 +28,13 @@ module.exports = {
       colors: {
         black: '#333',
         gray: {
-          1: '#828282',
-          2: '#F2F2F2',
-          3: '#4F4F4F',
-          4: '#BDBDBD',
+          828282: '#828282',
+          F2F2F2: '#F2F2F2',
+          '4F4F4F': '#4F4F4F',
+          BDBDBD: '#BDBDBD',
         },
         red: {
-          1: '#EB5757',
+          EB5757: '#EB5757',
         },
       },
       placeholderColor: (theme) => theme('colors'),

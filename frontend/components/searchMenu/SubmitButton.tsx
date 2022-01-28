@@ -6,7 +6,7 @@ type Props = {
 
 const SubmitButton = ({ click }: Props) => (
   <button
-    className="flex rounded-2xl bg-red-1 px-6 py-3.5 shadow-search transition-opacity hover:opacity-80"
+    className="bg-red-EB5757 flex rounded-2xl px-6 py-3.5 shadow-search transition-opacity hover:opacity-80"
     onClick={click}
   >
     <SearchIcon width="18px" height="18px" className="fill-white" />

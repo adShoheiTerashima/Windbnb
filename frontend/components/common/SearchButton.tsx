@@ -27,7 +27,7 @@ const SearchButton = ({ setForcusForm }: Props) => {
         {searchConditionCtx.city}, {searchConditionCtx.country}
       </span>
     ) : (
-      <span className="text-sm text-gray-4">Add location</span>
+      <span className="text-sm text-gray-BDBDBD">Add location</span>
     )
   useEffect(() => {
     setGuests(searchConditionCtx.adults + searchConditionCtx.children)
@@ -36,31 +36,31 @@ const SearchButton = ({ setForcusForm }: Props) => {
     guests > 0 ? (
       <span className="text-sm">{guests} guests</span>
     ) : (
-      <span className="text-sm text-gray-4">Add guets</span>
+      <span className="text-sm text-gray-BDBDBD">Add guets</span>
     )
 
   return (
     <div className="flex cursor-pointer rounded-2xl font-Mulish shadow-search">
       <button
         type="button"
-        className="rounded-l-2xl border border-gray-2 p-4.5 text-sm hover:border-black"
+        className="rounded-l-2xl border border-gray-F2F2F2 p-4.5 text-sm hover:border-black"
         onClick={() => click(FORM_TYPE.LOCATION)}
       >
         {selectedLocation}
       </button>
       <button
         type="button"
-        className="border border-l-0 border-gray-2 p-4.5 font-Mulish hover:-ml-px hover:border-l hover:border-black"
+        className="border border-l-0 border-gray-F2F2F2 p-4.5 font-Mulish hover:-ml-px hover:border-l hover:border-black"
         onClick={() => click(FORM_TYPE.GUESTS)}
       >
         {viewGuests}
       </button>
       <button
         type="button"
-        className="rounded-r-2xl border border-l-0 border-gray-2 p-4.5 hover:-ml-px hover:border-l hover:border-black"
+        className="rounded-r-2xl border border-l-0 border-gray-F2F2F2 p-4.5 hover:-ml-px hover:border-l hover:border-black"
         onClick={() => click(FORM_TYPE.LOCATION)}
       >
-        <SearchIcon width="18px" height="18px" className="fill-red" />
+        <SearchIcon width="18px" height="18px" className="fill-red-EB5757" />
       </button>
     </div>
   )
