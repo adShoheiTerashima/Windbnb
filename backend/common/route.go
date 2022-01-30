@@ -5,19 +5,25 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+
+	property "github.com/adShoheiTerashima/Windbnb/properties/handler"
 )
 
 // Route エンドポイント管理
 func Route(e *echo.Echo) {
 	// ここでhandlerをnewする
+	propertyHandler := property.NewPropertyHandler()
 
 	// 認証が不要なエンドポイント
-	e.GET("/health", func(c echo.Context) error {
+	api := e.Group("/api/")
+
+	api.GET("health", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
-	e.GET("/servertime", func(c echo.Context) error {
+	api.GET("servertime", func(c echo.Context) error {
 		return c.String(http.StatusOK, time.Now().UTC().Format(time.RFC3339))
 	})
+	api.GET("search", propertyHandler.Search)
 
 	// 認証が必要なエンドポイント
 	// r := e.Group("/")

@@ -8,12 +8,12 @@ package domain
 import "net/url"
 
 type SearchRequest struct {
-	City        string
-	Country     string
-	Adults      uint
-	Children    uint
-	IsSuperHost bool
-	Type        string
+	City        string `query:"city" json:"city"`
+	Country     string `query:"country" json:"country"`
+	Adults      uint   `query:"adults" json:"adults"`
+	Children    uint   `query:"children" json:"children"`
+	IsSuperHost bool   `query:"isSuperHost" json:"isSuperHost"`
+	Type        string `query:"type" json:"type"`
 }
 
 type SearchProperty struct {
