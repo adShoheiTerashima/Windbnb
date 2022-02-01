@@ -9,7 +9,7 @@ import { focusFormType } from '@lib/utils/types'
 
 import SubmitButton from '@components/searchMenu/SubmitButton'
 import SearchInput from '@components/searchMenu/SearchBox'
-import SuggestItem from '@components/searchMenu/SuggestItem'
+import SuggestList from '@components/searchMenu/SuggestList'
 import GuestCount from '@components/searchMenu/GuestCount'
 
 type Props = {
@@ -65,11 +65,15 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   // clickイベント
   const clickLocation = () => setForcusForm(FORM_TYPE.LOCATION)
   const clickGuests = () => setForcusForm(FORM_TYPE.GUESTS)
-  const clickSuggest = (propertyId: number) => {
+  const clickSuggest = (city: string, country: string) => {
     // ここで何らかの形でpropertyIdからcity, countryを取り出す
-    console.log(`propertyId${propertyId}`)
+    console.log(`city: ${city}`)
+    console.log(`country: ${country}`)
 
     // とりあえず適当に値入れておく
+    setInputText(`${city}, ${country}`)
+    setInputCity(city)
+    setInputCountry(country)
   }
 
   // Searchボタン押下
@@ -130,7 +134,9 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           </div>
         </div>
         <div className="mt-11 grid grid-cols-3">
-          <div className="ml-1.5">{isFocusLocation ? <SuggestItem /> : ''}</div>
+          <div className="ml-1.5">
+            {isFocusLocation ? <SuggestList click={clickSuggest} /> : ''}
+          </div>
           <div className="ml-2.5">
             {isFocusGuests ? (
               <GuestCount
