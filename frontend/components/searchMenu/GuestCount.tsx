@@ -32,32 +32,16 @@ const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: 
             }}
           />
           <p className="mr-4 text-sm">{countAdults}</p>
-          <CountButton
-            type={btnType.PLUS}
-            click={() => {
-              clickAdultsCount(1)
-            }}
-          />
+          <CountButton type={btnType.PLUS} click={() => clickAdultsCount(1)} />
         </div>
       </li>
       <li className="mt-11 font-Mulish text-sm">
         <p className="font-bold">Children</p>
         <p className="mt-1 text-gray-BDBDBD">Ages 2-12</p>
         <div className="mt-3 flex items-center justify-start">
-          <CountButton
-            type={btnType.MINUS}
-            className="mr-4"
-            click={() => {
-              clickChildrenCount(-1)
-            }}
-          />
+          <CountButton type={btnType.MINUS} className="mr-4" click={() => clickChildrenCount(-1)} />
           <p className="mr-4 text-sm">{countChildren}</p>
-          <CountButton
-            type={btnType.PLUS}
-            click={() => {
-              clickChildrenCount(1)
-            }}
-          />
+          <CountButton type={btnType.PLUS} click={() => clickChildrenCount(1)} />
         </div>
       </li>
     </ul>

@@ -1,6 +1,8 @@
+import { FC, ReactElement, VFC } from 'react'
 import LocationOn from '@components/icons/LocationOn'
 
-import { Hit } from 'react-instantsearch-core'
+import { Hit, HitsProvided } from 'react-instantsearch-core'
+import { connectHits } from 'react-instantsearch-dom'
 
 type HitDoc = {
   objectID: string
@@ -8,18 +10,22 @@ type HitDoc = {
   country: string
 }
 
-type Props = {
-  hit: Hit<HitDoc>
+type Props = HitsProvided<Hit<HitDoc>> & {
+  click: (propertyId: string) => void
 }
 
-const SuggestItem = ({ hit }: Props) => {
+const SuggestItem: React.FunctionComponent<HitsProvided<Hit<HitDoc>>> = ({ hits }) => {
   return (
-    <li>
-      <LocationOn width="22px" height="22px" className="fill-gray-4F4F4F" />
-      <p className="ml-2.5 font-Mulish text-sm">
-        {hit.city}, {hit.country}
-      </p>
-    </li>
+    <ul>
+      {hits.map((hit: HitDoc) => (
+        <li className="flex cursor-pointer hover:font-bold">
+          <LocationOn width="22px" height="22px" className="fill-gray-4F4F4F" />
+          <p className="ml-2.5 font-Mulish text-sm">
+            {hit.city}, {hit.country}
+          </p>
+        </li>
+      ))}
+    </ul>
   )
 }
-export default SuggestItem
+export default connectHits(SuggestItem)

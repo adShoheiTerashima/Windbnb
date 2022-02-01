@@ -8,7 +8,7 @@ import { FORM_TYPE } from '@lib/utils/const'
 import { focusFormType } from '@lib/utils/types'
 
 import SubmitButton from '@components/searchMenu/SubmitButton'
-import SearchInput from '@components/searchMenu/Input'
+import SearchInput from '@components/searchMenu/SearchBox'
 import SuggestItem from '@components/searchMenu/SuggestItem'
 import GuestCount from '@components/searchMenu/GuestCount'
 
@@ -26,7 +26,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID || '',
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || '',
+    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY || '',
   )
   const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX || ''
 
@@ -70,9 +70,6 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
     console.log(`propertyId${propertyId}`)
 
     // とりあえず適当に値入れておく
-    setInputText('Helsinki, Finland')
-    setInputCity('Helsinki')
-    setInputCountry('Finland')
   }
 
   // Searchボタン押下
@@ -133,15 +130,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           </div>
         </div>
         <div className="mt-11 grid grid-cols-3">
-          <div className="ml-1.5">
-            {isFocusLocation ? (
-              <ul>
-                <Hits hitComponent={SuggestItem} />
-              </ul>
-            ) : (
-              ''
-            )}
-          </div>
+          <div className="ml-1.5">{isFocusLocation ? <SuggestItem /> : ''}</div>
           <div className="ml-2.5">
             {isFocusGuests ? (
               <GuestCount
