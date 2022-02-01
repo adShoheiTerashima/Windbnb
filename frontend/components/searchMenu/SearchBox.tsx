@@ -1,7 +1,9 @@
 import useDebounce from '@lib/hooks/useDebounce'
-import { useEffect } from 'react'
+import { useEffect, VFC } from 'react'
+import { connectSearchBox } from 'react-instantsearch-dom'
+import { SearchBoxProvided } from 'react-instantsearch-core'
 
-type Props = {
+interface Props extends SearchBoxProvided {
   id?: string
   label?: string
   placeholder?: string
@@ -9,7 +11,7 @@ type Props = {
   change: (event: { target: HTMLInputElement }) => void
 }
 
-const SearchInput = ({ id, label, placeholder, inputText, change }: Props) => {
+const SearchBox = ({ id, label, placeholder, inputText, change, refine }: Props) => {
   const debouncedInputText = useDebounce<string>(inputText, 200)
 
   useEffect(() => {
@@ -28,9 +30,12 @@ const SearchInput = ({ id, label, placeholder, inputText, change }: Props) => {
         className="outline-none placeholder-gray-BDBDBD::placeholder h-full w-full text-sm"
         placeholder={placeholder}
         value={inputText}
-        onChange={change}
+        onChange={(e) => {
+          refine(e.target.value)
+          change(e)
+        }}
       />
     </div>
   )
 }
-export default SearchInput
+export default connectSearchBox(SearchBox)
