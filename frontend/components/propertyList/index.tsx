@@ -18,19 +18,20 @@ type Stay = {
   beds?: number
   photo: string
 }
-const PropertyList = () => {
-  const article = (stays as Stay[]).map(
-    ({ superHost, title, rating, type, photo }: Stay, index: number) => (
-      <ListItem
-        imageUrl={photo}
-        isSuperHost={superHost}
-        title={title}
-        rating={rating}
-        type={type}
-        key={index}
-      />
-    ),
-  )
+type Props = {
+  list: Stay[]
+}
+const PropertyList = ({ list }: Props) => {
+  const article = list.map(({ superHost, title, rating, type, photo }: Stay, index: number) => (
+    <ListItem
+      imageUrl={photo}
+      isSuperHost={superHost}
+      title={title}
+      rating={rating}
+      type={type}
+      key={index}
+    />
+  ))
   return (
     <section>
       <ListTitle />

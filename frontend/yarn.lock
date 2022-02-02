@@ -11979,45 +11979,6 @@ react@latest:
   languageName: node
   linkType: hard
 
-"referrer@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "referrer@workspace:."
-  dependencies:
-    "@babel/core": ^7.15.8
-    "@headlessui/react": ^1.4.3
-    "@heroicons/react": ^1.0.5
-    "@mdx-js/react": ^1.6.22
-    "@reduxjs/toolkit": ^1.6.2
-    "@storybook/addon-actions": ^6.3.12
-    "@storybook/addon-docs": ^6.3.12
-    "@storybook/addon-essentials": ^6.3.12
-    "@storybook/addon-links": ^6.3.12
-    "@storybook/addon-postcss": ^2.0.0
-    "@storybook/react": ^6.3.12
-    "@types/react": 17.0.29
-    "@types/react-instantsearch-dom": ^6.12.2
-    algoliasearch: ^4.12.1
-    autoprefixer: ^9.8.8
-    babel-loader: ^8.2.2
-    classnames: ^2.3.1
-    eslint: ^8.6.0
-    eslint-config-next: 11.1.2
-    eslint-config-prettier: ^8.3.0
-    next: 12
-    postcss: ^7.0.39
-    prettier: ^2.5.1
-    prettier-plugin-tailwindcss: ^0.1.3
-    react: latest
-    react-dom: latest
-    react-hook-form: ^7.24.1
-    react-instantsearch-dom: ^6.21.1
-    react-loading-skeleton: ^2.2.0
-    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2.2.17"
-    typescript: 4.4.4
-    yarn: ^1.22.17
-  languageName: unknown
-  linkType: soft
-
 "refractor@npm:^3.1.0":
   version: 3.5.0
   resolution: "refractor@npm:3.5.0"
@@ -14409,6 +14370,45 @@ react@latest:
   checksum: 03db6c9d0af9329c37d74378ff1d91972b12553c7d72a6f4e8525fe61563fa7adb0b9d6e8d546b7e059688712ea874edd5ded475999abdeedf708de9849310e0
   languageName: node
   linkType: hard
+
+"windbnb@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "windbnb@workspace:."
+  dependencies:
+    "@babel/core": ^7.15.8
+    "@headlessui/react": ^1.4.3
+    "@heroicons/react": ^1.0.5
+    "@mdx-js/react": ^1.6.22
+    "@reduxjs/toolkit": ^1.6.2
+    "@storybook/addon-actions": ^6.3.12
+    "@storybook/addon-docs": ^6.3.12
+    "@storybook/addon-essentials": ^6.3.12
+    "@storybook/addon-links": ^6.3.12
+    "@storybook/addon-postcss": ^2.0.0
+    "@storybook/react": ^6.3.12
+    "@types/react": 17.0.29
+    "@types/react-instantsearch-dom": ^6.12.2
+    algoliasearch: ^4.12.1
+    autoprefixer: ^9.8.8
+    babel-loader: ^8.2.2
+    classnames: ^2.3.1
+    eslint: ^8.6.0
+    eslint-config-next: 11.1.2
+    eslint-config-prettier: ^8.3.0
+    next: 12
+    postcss: ^7.0.39
+    prettier: ^2.5.1
+    prettier-plugin-tailwindcss: ^0.1.3
+    react: latest
+    react-dom: latest
+    react-hook-form: ^7.24.1
+    react-instantsearch-dom: ^6.21.1
+    react-loading-skeleton: ^2.2.0
+    tailwindcss: "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    typescript: 4.4.4
+    yarn: ^1.22.17
+  languageName: unknown
+  linkType: soft
 
 "word-wrap@npm:^1.2.3, word-wrap@npm:~1.2.3":
   version: 1.2.3
