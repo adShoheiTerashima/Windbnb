@@ -12,10 +12,10 @@ interface Props extends SearchBoxProvided {
 }
 
 const SearchBox = ({ id, label, placeholder, inputText, change, refine }: Props) => {
-  const debouncedInputText = useDebounce<string>(inputText, 200)
+  const debouncedInputText = useDebounce<string>(inputText, 1000)
 
   useEffect(() => {
-    console.log('api実行！')
+    refine(debouncedInputText)
   }, [debouncedInputText])
 
   return (
@@ -31,7 +31,6 @@ const SearchBox = ({ id, label, placeholder, inputText, change, refine }: Props)
         placeholder={placeholder}
         value={inputText}
         onChange={(e) => {
-          refine(e.target.value)
           change(e)
         }}
       />

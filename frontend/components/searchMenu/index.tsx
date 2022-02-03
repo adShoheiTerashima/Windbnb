@@ -1,16 +1,19 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import { InstantSearch, Hits, Configure } from 'react-instantsearch-dom'
-import algoliasearch from 'algoliasearch/lite'
+import { InstantSearch, Configure } from 'react-instantsearch-dom'
 
 import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
+import { NavMenuContext } from '@lib/hooks/useNavMenu'
+import { suggestClient, suggestIndexName } from '@lib/api/algolia'
 import { FORM_TYPE } from '@lib/utils/const'
 import { focusFormType } from '@lib/utils/types'
 
 import SubmitButton from '@components/searchMenu/SubmitButton'
-import SearchInput from '@components/searchMenu/SearchBox'
+import SearchBox from '@components/searchMenu/SearchBox'
 import SuggestList from '@components/searchMenu/SuggestList'
 import GuestCount from '@components/searchMenu/GuestCount'
+import { LocationValueObject } from '@domain/location'
+import { GuestsValueObject } from '@domain/guets'
 
 type Props = {
   focusForm: focusFormType
@@ -21,34 +24,32 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   const locationRef = useRef<HTMLDivElement>(null)
   const guestsRef = useRef<HTMLDivElement>(null)
   const searchConditionCtx = useContext(SearchConditionContext)
-  const [guests, setGuests] = useState(0)
+  const navMenuCtx = useContext(NavMenuContext)
   const router = useRouter()
+  const locVO = new LocationValueObject(searchConditionCtx.city, searchConditionCtx.country)
+  const guestsVO = new GuestsValueObject(searchConditionCtx.adults, searchConditionCtx.children)
 
-  const searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_ID || '',
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY || '',
-  )
-  const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX || ''
-
-  // 検索テキストフォーム周り
-  const [inputCity, setInputCity] = useState(searchConditionCtx.city)
-  const [inputCountry, setInputCountry] = useState(searchConditionCtx.country)
-  const [inputText, setInputText] = useState(
-    searchConditionCtx.country !== ''
-      ? `${searchConditionCtx.city}, ${searchConditionCtx.country}`
-      : '',
-  )
+  // 選択中の検索テキストフォーム周り
+  const [inputCity, setInputCity] = useState(locVO.city)
+  const [inputCountry, setInputCountry] = useState(locVO.country)
+  const [inputText, setInputText] = useState(locVO.location)
   const changeText = (event: { target: HTMLInputElement }) => setInputText(event.target.value)
 
-  // guestの人数変更
-  const [countAdults, setCountAdults] = useState(searchConditionCtx.adults)
-  const [countChildren, setCountChildren] = useState(searchConditionCtx.children)
-  const inputAdults = (num: number) => setCountAdults(num)
-  const inputChildren = (num: number) => setCountChildren(num)
-  useEffect(() => setGuests(countAdults + countChildren), [countAdults, countChildren])
+  // 選択中のguestの人数変更
+  const [countAdults, setCountAdults] = useState(guestsVO.adults)
+  const [countChildren, setCountChildren] = useState(guestsVO.children)
+  const [countGuests, setCountGuests] = useState(guestsVO.guests)
+  const inputAdults = (num: number) => {
+    guestsVO.adults = num
+    setCountAdults(guestsVO.adults)
+    setCountGuests(guestsVO.guests)
+  }
+  const inputChildren = (num: number) => {
+    guestsVO.children = num
+    setCountChildren(guestsVO.children)
+    setCountGuests(guestsVO.guests)
+  }
 
-  // これは値オブジェクトとして切り出したい…
-  const isZeroGuest = guests === 0
   const isFocusLocation = focusForm === FORM_TYPE.LOCATION
   const isFocusGuests = focusForm === FORM_TYPE.GUESTS
 
@@ -66,34 +67,33 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   const clickLocation = () => setForcusForm(FORM_TYPE.LOCATION)
   const clickGuests = () => setForcusForm(FORM_TYPE.GUESTS)
   const clickSuggest = (city: string, country: string) => {
-    // ここで何らかの形でpropertyIdからcity, countryを取り出す
-    console.log(`city: ${city}`)
-    console.log(`country: ${country}`)
-
-    // とりあえず適当に値入れておく
-    setInputText(`${city}, ${country}`)
-    setInputCity(city)
-    setInputCountry(country)
+    locVO.value = { city, country }
+    setInputText(locVO.location)
+    setInputCity(locVO.city)
+    setInputCountry(locVO.country)
   }
 
   // Searchボタン押下
   const clickSubmitButton = () => {
-    const query = {
-      city: inputCity,
-      country: inputCountry,
-      adults: countAdults,
-      children: countChildren,
-    }
-    // dummy url
+    searchConditionCtx.setCity(inputCity)
+    searchConditionCtx.setCountry(inputCountry)
+    searchConditionCtx.setAdults(countAdults)
+    searchConditionCtx.setChildren(countChildren)
+    navMenuCtx.setIsOpen(false)
     router.push({
       pathname: '/',
-      query,
+      query: {
+        city: inputCity,
+        country: inputCountry,
+        adults: countAdults,
+        children: countChildren,
+      },
     })
   }
 
   return (
     <div className="absolute top-0 h-115 w-full bg-white p-24 pb-0">
-      <InstantSearch indexName={indexName} searchClient={searchClient}>
+      <InstantSearch indexName={suggestIndexName} searchClient={suggestClient}>
         <Configure hitsPerPage={4} />
         <div className="grid grid-cols-3 rounded-2xl border border-gray-F2F2F2 font-Mulish shadow-search">
           <div className="flex">
@@ -103,7 +103,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
               onClick={clickLocation}
               tabIndex={0}
             >
-              <SearchInput
+              <SearchBox
                 id="search-location"
                 label="LOCATION"
                 placeholder="Add location"
@@ -121,10 +121,10 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
               tabIndex={0}
             >
               <p className="mb-1 text-0.5 font-extrabold">GUESTS</p>
-              {isZeroGuest ? (
+              {guestsVO.isZeroGuest ? (
                 <p className="text-sm text-gray-BDBDBD">Add guests</p>
               ) : (
-                <p className="text-sm">{guests} guests</p>
+                <p className="text-sm">{countGuests} guests</p>
               )}
             </div>
             <div className="border-l border-gray-F2F2F2" />
