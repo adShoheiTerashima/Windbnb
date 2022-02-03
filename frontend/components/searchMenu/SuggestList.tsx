@@ -19,7 +19,7 @@ const SuggestList: VFC<Props> = ({ hits, click }) => {
     <ul>
       {hits!.map((hit: HitDoc) => (
         <li
-          className="flex cursor-pointer hover:font-bold"
+          className="mb-9 flex cursor-pointer hover:font-bold"
           onClick={() => click(hit.city, hit.country)}
           key={hit.objectID}
         >

@@ -1,11 +1,13 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import router from 'next/router'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FORM_TYPE } from '@lib/utils/const'
 import { focusFormType } from '@lib/utils/types'
 import { SearchConditionContext } from '@lib/hooks/useSearchCondition'
-
+import { LocationValueObject } from '@domain/location'
 import SearchIcon from '@components/icons/SearchIcon'
+import { GuestsValueObject } from '@domain/guets'
 
 type Props = {
   setForcusForm: React.Dispatch<React.SetStateAction<focusFormType>>
@@ -14,7 +16,8 @@ type Props = {
 const SearchButton = ({ setForcusForm }: Props) => {
   const navMenuCtx = useContext(NavMenuContext)
   const searchConditionCtx = useContext(SearchConditionContext)
-  const [guests, setGuests] = useState(searchConditionCtx.adults + searchConditionCtx.children)
+  const locVO = new LocationValueObject(searchConditionCtx.city, searchConditionCtx.country)
+  const guestsVO = new GuestsValueObject(searchConditionCtx.adults, searchConditionCtx.children)
 
   const click = (clickedType: focusFormType) => {
     navMenuCtx.setIsOpen(!navMenuCtx.isOpen)
@@ -22,19 +25,15 @@ const SearchButton = ({ setForcusForm }: Props) => {
   }
 
   const selectedLocation =
-    searchConditionCtx.country !== '' ? (
-      <span className="text-sm">
-        {searchConditionCtx.city}, {searchConditionCtx.country}
-      </span>
+    locVO.location !== '' ? (
+      <span className="text-sm">{locVO.location}</span>
     ) : (
       <span className="text-sm text-gray-BDBDBD">Add location</span>
     )
-  useEffect(() => {
-    setGuests(searchConditionCtx.adults + searchConditionCtx.children)
-  }, [searchConditionCtx.adults, searchConditionCtx.children])
+
   const viewGuests =
-    guests > 0 ? (
-      <span className="text-sm">{guests} guests</span>
+    guestsVO.guests > 0 ? (
+      <span className="text-sm">{guestsVO.guests} guests</span>
     ) : (
       <span className="text-sm text-gray-BDBDBD">Add guets</span>
     )

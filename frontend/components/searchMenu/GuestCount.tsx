@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { CountButton, btnType } from '@components/searchMenu/CountButton'
+import { GuestsValueObject } from '@domain/guets'
 
 type Props = {
   countAdults: number
@@ -9,13 +9,14 @@ type Props = {
 }
 
 const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: Props) => {
+  const guestsVO = new GuestsValueObject(countAdults, countChildren)
   const clickAdultsCount = (count: number) => {
-    const countResult = countAdults + count > 0 ? countAdults + count : 0
-    inputAdults(countResult)
+    guestsVO.adults = countAdults + count
+    inputAdults(guestsVO.adults)
   }
   const clickChildrenCount = (count: number) => {
-    const countResult = countChildren + count > 0 ? countChildren + count : 0
-    inputChildren(countResult)
+    guestsVO.children = countChildren + count
+    inputChildren(guestsVO.children)
   }
 
   return (
