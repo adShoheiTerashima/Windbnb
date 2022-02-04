@@ -23,7 +23,8 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
   return (
     <div
       className={cn(className, [
-        'w-98',
+        'w-87.5',
+        'md:w-98',
         'flex',
         'flex-col',
         'mb-12.5',
@@ -38,7 +39,7 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
           <div className="text-sm text-gray-828282">{type}</div>
         </div>
         <div className="flex items-center justify-center">
-          <StartIcon width="14px" height="14px" className="fill-red-EB5757 mr-1" />
+          <StartIcon width="14px" height="14px" className="mr-1 fill-red-EB5757" />
           <p className="text-sm text-gray-4F4F4F">{rating}</p>
         </div>
       </div>

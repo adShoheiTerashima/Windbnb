@@ -5,10 +5,10 @@ import { useNavMenu, NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FORM_TYPE } from '@lib/utils/const'
 import { focusFormType } from '@lib/utils/types'
 
-import Header from '@components/common/Header'
+import Header from '@components/headerMenu/Header'
 import Footer from '@components/common/Footer'
 import SearchMenu from '@components/searchMenu'
-import Overlay from '@components/common/Overlay'
+import Overlay from '@components/headerMenu/Overlay'
 
 type Props = {
   children: React.ReactNode
@@ -35,7 +35,7 @@ const Layout = ({ children }: Props) => {
           <SearchMenu focusForm={focusForm} setForcusForm={setForcusForm} />
         </Transition>
       </NavMenuContext.Provider>
-      <main className="px-24 font-Montserrat">{children}</main>
+      <main className="px-3 font-Montserrat md:px-24">{children}</main>
       <Footer />
     </div>
   )
