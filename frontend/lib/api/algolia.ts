@@ -17,7 +17,7 @@ export const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY).initI
   ALGOLIA_INDEX_NAME,
 )
 
-export type searchResult = {
+export type SearchResult = {
   city: string
   country: string
   superHost: boolean
@@ -29,14 +29,14 @@ export type searchResult = {
   photo: string
 }
 type Hits = {
-  hits: searchResult[]
+  hits: SearchResult[]
 }
 export const searchProperties = async ({
   city,
   country,
   adults,
   children,
-}: query): Promise<searchResult[]> => {
+}: query): Promise<SearchResult[]> => {
   const guestsVO = new GuestsValueObject(adults, children)
   const filters: string[] = []
   if (city !== '') {

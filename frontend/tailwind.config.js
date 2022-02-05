@@ -19,7 +19,7 @@ module.exports = {
         12.5: '3.125rem',
         13: '3.25rem',
         67.5: '16.875rem',
-        87.5: '21.875',
+        87.5: '21.875rem',
         98: '24.5rem',
         115: '28.75rem',
       },
@@ -46,7 +46,7 @@ module.exports = {
         search: '0 1px 6px rgba(0,0,0,0.1)',
       },
       gridTemplateColumns: {
-        propertyList: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
+        propertyList: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))',
       },
     },
   },

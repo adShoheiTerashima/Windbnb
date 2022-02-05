@@ -1,37 +1,23 @@
 import ListTitle from '@components/propertyList/ListTitle'
 import ListItem from '@components/propertyList/ListItem'
-/*
-stays.json
-Dummy data for component creation
-This data will be deleted when the API is implemented or when the data is connected.
-*/
-import stays from './stays.json'
+import { SearchResult } from '@lib/api/algolia'
 
-type Stay = {
-  city: string
-  country: string
-  superHost: boolean
-  title: string
-  rating: number
-  maxGuests: number
-  type: string
-  beds?: number
-  photo: string
-}
 type Props = {
-  list: Stay[]
+  list: SearchResult[]
 }
 const PropertyList = ({ list }: Props) => {
-  const article = list.map(({ superHost, title, rating, type, photo }: Stay, index: number) => (
-    <ListItem
-      imageUrl={photo}
-      isSuperHost={superHost}
-      title={title}
-      rating={rating}
-      type={type}
-      key={index}
-    />
-  ))
+  const article = list.map(
+    ({ superHost, title, rating, type, photo }: SearchResult, index: number) => (
+      <ListItem
+        photo={photo}
+        superHost={superHost}
+        title={title}
+        rating={rating}
+        type={type}
+        key={index}
+      />
+    ),
+  )
   return (
     <section>
       <ListTitle />
