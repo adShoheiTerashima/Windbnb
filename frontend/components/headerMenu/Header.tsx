@@ -8,7 +8,7 @@ type Props = {
 
 const Header = ({ setForcusForm }: Props) => {
   return (
-    <header className="flex flex-col justify-between px-3 py-5 md:flex-row md:items-center md:py-8 md:px-24">
+    <header className="flex flex-col justify-between px-3 py-5 md:flex-row md:items-center md:p-8 lg:px-24">
       <div className="mb-10 cursor-pointer md:mb-0">
         <Logo />
       </div>

@@ -35,7 +35,7 @@ const Layout = ({ children }: Props) => {
           <SearchMenu focusForm={focusForm} setForcusForm={setForcusForm} />
         </Transition>
       </NavMenuContext.Provider>
-      <main className="px-3 font-Montserrat md:px-24">{children}</main>
+      <main className="px-3 font-Montserrat md:px-8 lg:px-24">{children}</main>
       <Footer />
     </div>
   )

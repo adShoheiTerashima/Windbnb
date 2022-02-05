@@ -10,11 +10,11 @@ import { formattedQuery, rowQuery, _sleep } from '@lib/utils/common'
 import Page from '@components/common/Page'
 import Layout from '@components/common/Layout'
 import PropertyList from '@components/propertyList'
-import { searchProperties, searchResult } from '@lib/api/algolia'
+import { searchProperties, SearchResult } from '@lib/api/algolia'
 
 type Props = {
   data: defaultSearchConditionType
-  list: searchResult[]
+  list: SearchResult[]
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {

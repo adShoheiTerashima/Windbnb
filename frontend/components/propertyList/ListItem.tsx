@@ -1,18 +1,14 @@
 import cn from 'classnames'
 import Badge from '@components/propertyList/Badge'
 import StartIcon from '@components/icons/Star'
+import { SearchResult } from '@lib/api/algolia'
 
-type Props = {
-  imageUrl?: string
-  isSuperHost: boolean
-  title: string
-  type: string
-  rating: number
+type Props = Partial<SearchResult> & {
   className?: string
 }
 
-const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Props) => {
-  const superhost = isSuperHost ? (
+const ListItem = ({ photo, superHost, title, type, rating, className }: Props) => {
+  const superhost = superHost ? (
     <div className="mr-2.5">
       <Badge text="SUPER HOST" />
     </div>
@@ -24,7 +20,7 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
     <div
       className={cn(className, [
         'w-87.5',
-        'md:w-98',
+        'lg:w-98',
         'flex',
         'flex-col',
         'mb-12.5',
@@ -32,7 +28,7 @@ const ListItem = ({ imageUrl, isSuperHost, title, type, rating, className }: Pro
         'hover:opacity-75',
       ])}
     >
-      <img className="mb-4 h-67.5 w-full rounded-3xl object-cover" src={imageUrl} />
+      <img className="mb-4 h-67.5 w-full rounded-3xl object-cover" src={photo} />
       <div className="mb-3 flex h-7.5 justify-between">
         <div className="flex items-center">
           {superhost}
