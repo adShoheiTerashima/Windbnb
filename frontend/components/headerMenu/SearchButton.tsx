@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react'
-import router from 'next/router'
 
 import { NavMenuContext } from '@lib/hooks/useNavMenu'
 import { FORM_TYPE } from '@lib/utils/const'
