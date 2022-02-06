@@ -14,6 +14,7 @@ import SuggestList from '@components/searchMenu/SuggestList'
 import GuestCount from '@components/searchMenu/GuestCount'
 import { LocationValueObject } from '@domain/location'
 import { GuestsValueObject } from '@domain/guets'
+import Close from '@components/icons/Close'
 
 type Props = {
   focusForm: focusFormType
@@ -92,10 +93,14 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   }
 
   return (
-    <div className="absolute top-0 h-115 w-full bg-white p-24 pb-0">
+    <div className="absolute top-0 h-115 w-full bg-white px-3 py-0 lg:p-24 lg:pb-0">
+      <div className="flex items-center justify-between py-4 lg:hidden">
+        <p className="font-Mulish text-sm font-bold">Edit your Search</p>
+        <Close width="22px" height="22px" className="fill-black" />
+      </div>
       <InstantSearch indexName={suggestIndexName} searchClient={suggestClient}>
         <Configure hitsPerPage={4} />
-        <div className="grid grid-cols-3 rounded-2xl border border-gray-F2F2F2 font-Mulish shadow-search">
+        <div className="grid grid-cols-1 rounded-2xl border border-gray-F2F2F2 font-Mulish shadow-search md:grid-cols-3">
           <div className="flex">
             <div
               className="focus:outline-none h-full w-full cursor-pointer rounded-2xl border border-white p-2.5 focus-within:border-black hover:border-black"
@@ -111,7 +116,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
                 change={changeText}
               />
             </div>
-            <div className="border-l border-gray-F2F2F2" />
+            <div className="hidden border-l border-gray-F2F2F2 md:block" />
           </div>
           <div className="flex">
             <div
@@ -127,26 +132,22 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
                 <p className="text-sm">{countGuests} guests</p>
               )}
             </div>
-            <div className="border-l border-gray-F2F2F2" />
+            <div className="hidden border-l border-gray-F2F2F2 md:block" />
           </div>
-          <div className="flex items-center justify-center">
+          <div className="hidden items-center justify-center md:flex">
             <SubmitButton click={clickSubmitButton} />
           </div>
         </div>
-        <div className="mt-11 grid grid-cols-3">
-          <div className="ml-1.5">
-            {isFocusLocation ? <SuggestList click={clickSuggest} /> : ''}
-          </div>
+        <div className="mt-11 grid grid-cols-1 md:grid-cols-3">
+          <div className="ml-1.5">{isFocusLocation && <SuggestList click={clickSuggest} />}</div>
           <div className="ml-2.5">
-            {isFocusGuests ? (
+            {isFocusGuests && (
               <GuestCount
                 countAdults={countAdults}
                 countChildren={countChildren}
                 inputAdults={inputAdults}
                 inputChildren={inputChildren}
               />
-            ) : (
-              ''
             )}
           </div>
         </div>
