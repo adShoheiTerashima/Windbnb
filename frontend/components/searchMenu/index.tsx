@@ -65,6 +65,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   }, [])
 
   // clickイベント
+  const clickClose = () => navMenuCtx.setIsOpen(false)
   const clickLocation = () => setForcusForm(FORM_TYPE.LOCATION)
   const clickGuests = () => setForcusForm(FORM_TYPE.GUESTS)
   const clickSuggest = (city: string, country: string) => {
@@ -96,7 +97,9 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
     <div className="absolute top-0 h-115 w-full bg-white px-3 py-0 lg:p-24 lg:pb-0">
       <div className="flex items-center justify-between py-4 lg:hidden">
         <p className="font-Mulish text-sm font-bold">Edit your Search</p>
-        <Close width="22px" height="22px" className="fill-black" />
+        <div onClick={clickClose}>
+          <Close width="22px" height="22px" className="fill-black" />
+        </div>
       </div>
       <InstantSearch indexName={suggestIndexName} searchClient={suggestClient}>
         <Configure hitsPerPage={4} />
