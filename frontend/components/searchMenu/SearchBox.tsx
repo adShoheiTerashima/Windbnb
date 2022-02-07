@@ -19,7 +19,7 @@ const SearchBox = ({ id, label, placeholder, inputText, change, refine }: Props)
   }, [debouncedInputText])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-6 md:px-0">
       {label && (
         <label className="mb-1 text-0.5 font-extrabold" htmlFor={id}>
           {label}

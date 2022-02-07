@@ -16,7 +16,7 @@ type Props = HitsProvided<Hit<HitDoc>> & {
 
 const SuggestList: VFC<Props> = ({ hits, click }) => {
   return (
-    <ul>
+    <ul className="px-6 md:px-0">
       {hits!.map((hit: HitDoc) => (
         <li
           className="mb-9 flex cursor-pointer hover:font-bold"
