@@ -94,7 +94,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
   }
 
   return (
-    <div className="absolute top-0 h-115 w-full bg-white px-3 py-0 lg:p-24 lg:pb-0">
+    <div className="absolute top-0 h-157 w-full bg-white px-3 py-0 md:h-115 lg:p-24 lg:pb-0">
       <div className="flex items-center justify-between py-4 lg:hidden">
         <p className="font-Mulish text-sm font-bold">Edit your Search</p>
         <div onClick={clickClose}>
@@ -123,7 +123,7 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           </div>
           <div className="flex">
             <div
-              className="focus:outline-none h-full w-full  cursor-pointer rounded-2xl border border-white  p-2.5 hover:border-black focus:border-black"
+              className="focus:outline-none h-full w-full cursor-pointer rounded-2xl border border-white px-8.5 py-2.5 hover:border-black focus:border-black md:p-2.5"
               ref={guestsRef}
               onClick={clickGuests}
               tabIndex={0}
@@ -155,6 +155,9 @@ const SearchForm = ({ focusForm, setForcusForm }: Props) => {
           </div>
         </div>
       </InstantSearch>
+      <div className="absolute inset-x-2/4 bottom-8 flex justify-center md:block">
+        <SubmitButton click={clickSubmitButton} />
+      </div>
     </div>
   )
 }

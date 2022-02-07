@@ -20,7 +20,7 @@ const GuestCount = ({ countAdults, countChildren, inputAdults, inputChildren }: 
   }
 
   return (
-    <ul>
+    <ul className="px-6 md:px-0">
       <li className="font-Mulish text-sm">
         <p className="font-bold">Adults</p>
         <p className="mt-1 text-gray-BDBDBD">Ages 12 or above</p>
